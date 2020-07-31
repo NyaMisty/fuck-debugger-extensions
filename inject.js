@@ -70,7 +70,7 @@ function core(e,window) {
         return newV
       }
     })
-
+    console.log("hook debugger finished!")
   }
   if (e["config-hook-pushState"]) {
     // hook pushState
@@ -87,6 +87,7 @@ function core(e,window) {
       return oldHistoryPushState.apply(this, arguments)
     };
     history.pushState.toString = oldHistoryPushState.toString.bind(oldHistoryPushState)
+    console.log("hook pushState finished!")
   }
   if (e["config-hook-regExp"]) {
     // hook RegExp
@@ -101,6 +102,7 @@ function core(e,window) {
       }
     });
     RegExp.toString = oldRegExp.toString.bind(oldRegExp)
+    console.log("hook regExp finished!")
   }
 
   if (e["config-hook-console"]) {
@@ -111,6 +113,7 @@ function core(e,window) {
       console[key].toString = old.toString.bind(old)
       return old;
     })
+    oldConsole[3]("hook console finished!")
   }
 
 
